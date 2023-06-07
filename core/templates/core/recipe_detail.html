@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4">
+    <div class="max-w-2xl rounded overflow-hidden shadow-lg m-2 mx-auto"> <!-- Increased width -->
+        <img class="w-full h-64 object-cover" src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+        <div class="px-6 py-4">
+            <div class="font-bold text-2xl mb-2">{{ recipe.title }}</div>
+            <p class="text-gray-700 text-base">{{ recipe.description }}</p>
+        </div>
+        <div class="px-6 py-4">
+            <table class="table-auto w-full">
+                <tr>
+                    <td>Prep Time:</td>
+                    <td>{{ recipe.prep_time }} minutes</td>
+                </tr>
+                <tr>
+                    <td>Cook Time:</td>
+                    <td>{{ recipe.cook_time }} minutes</td>
+                </tr>
+                <tr>
+                    <td>Total Time:</td>
+                    <td>{{ recipe.total_time }} minutes</td>
+                </tr>
+                <tr>
+                    <td>Servings:</td>
+                    <td>{{ recipe.servings }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="px-6 py-4">
+            <h2 class="font-bold text-lg mb-2">Ingredients:</h2>
+            <!-- Display each ingredient as a list item -->
+            <ul class="list-disc list-inside">
+                {% for ingredient in recipe.ingredients.splitlines %}
+                <li class="text-gray-700 text-base">{{ ingredient }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="px-6 py-4">
+            <h2 class="font-bold text-lg mb-2">Directions:</h2>
+            <!-- Display each step as a numbered list item -->
+            <ol class="list-decimal list-inside">
+                {% for direction in recipe.directions.splitlines %}
+                <li class="text-gray-700 text-base">{{ direction }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+{% endblock %}

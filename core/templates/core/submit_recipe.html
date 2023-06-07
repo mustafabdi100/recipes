@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4">
+    <h1 class="text-3xl mb-6">Submit a Recipe</h1>
+    <form method="POST" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="{{ form.title.id_for_label }}" class="block text-gray-700 font-bold mb-2">Title:</label>
+            <input class="form-input block w-full border rounded p-2" id="{{ form.title.id_for_label }}" name="{{ form.title.name }}" type="text" value="{{ form.title.value }}">
+        </div>
+        <div class="mb-4">
+            <label for="{{ form.description.id_for_label }}" class="block text-gray-700 font-bold mb-2">Description:</label>
+            <textarea class="form-textarea block w-full border rounded p-2" id="{{ form.description.id_for_label }}" name="{{ form.description.name }}" rows="5">{{ form.description.value }}</textarea>
+        </div>
+        <div class="mb-4">
+            <label for="{{ form.image.id_for_label }}" class="block text-gray-700 font-bold mb-2">Image:</label>
+            <input class="form-input block w-full border rounded p-2" id="{{ form.image.id_for_label }}" name="{{ form.image.name }}" type="file">
+        </div>
+        <div class="mb-4">
+            <label for="{{ form.prep_time.id_for_label }}" class="block text-gray-700 font-bold mb-2">Preparation Time (in minutes):</label>
+            <input class="form-input block w-full border rounded p-2" id="{{ form.prep_time.id_for_label }}" name="{{ form.prep_time.name }}" type="number" value="{{ form.prep_time.value }}">
+        </div>
+        <div class="mb-4">
+            <label for="{{ form.cook_time.id_for_label }}" class="block text-gray-700 font-bold mb-2">Cooking Time (in minutes):</label>
+            <input class="form-input block w-full border rounded p-2" id="{{ form.cook_time.id_for_label }}" name="{{ form.cook_time.name }}" type="number" value="{{ form.cook_time.value }}">
+        </div>
+        <div class="mb-4">
+            <label for="{{ form.total_time.id_for_label }}" class="block text-gray-700 font-bold mb-2">Total Time (in minutes):</label>
+            <input class="form-input block w-full border rounded p-2" id="{{ form.total_time.id_for_label }}" name="{{ form.total_time.name }}" type="number" value="{{ form.total_time.value }}">
+        </div>
+        <div class="mb-4">
+            <label for="{{ form.servings.id_for_label }}" class="block text-gray-700 font-bold mb-2">Servings:</label>
+            <input class="form-input block w-full border rounded p-2" id="{{ form.servings.id_for_label }}" name="{{ form.servings.name }}" type="number" value="{{ form.servings.value }}">
+        </div>
+        <div class="mb-4">
+            <label for="{{ form.ingredients.id_for_label }}" class="block text-gray-700 font-bold mb-2">Ingredients:</label>
+            <textarea class="form-textarea block w-full border rounded p-2" id="{{ form.ingredients.id_for_label }}" name="{{ form.ingredients.name }}" rows="5">{{ form.ingredients.value }}</textarea>
+        </div>
+        <div class="mb-4">
+            <label for="{{ form.directions.id_for_label }}" class="block text-gray-700 font-bold mb-2">Directions:</label>
+            <textarea class="form-textarea block w-full border rounded p-2" id="{{ form.directions.id_for_label }}" name="{{ form.directions.name }}" rows="5">{{ form.directions.value }}</textarea>
+        </div>
+        <div class="flex items-center justify-between">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

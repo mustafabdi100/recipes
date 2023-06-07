@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie Connect</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<div class="w-full bg-white p-4 shadow-md">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex justify-between">
+        <div>
+          <span class="text-xl font-bold text-gray-800">Recipes</span>
+        </div>
+        <div class="hidden md:block">
+          <ul class="inline-flex items-center space-x-10 text-gray-600">
+            <li><a href="{% url 'home' %}" class="hover:text-blue-500">Home</a></li>
+            <li><a href="{% url 'featured_recipes' %}" class="hover:text-blue-500">Recipes</a></li>
+            <li><a href="{% url 'submit_recipe' %}" class="hover:text-blue-500">Submit Recipe</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}" class="hover:text-blue-500">Profile</a></li>
+            <li><a href="{% url 'account_logout' %}" class="hover:text-blue-500">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'account_login' %}" class="hover:text-blue-500">Login</a></li>
+            <li><a href="{% url 'account_signup' %}" class="hover:text-blue-500">Register</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="md:hidden">
+          <button id="menuButton" class="focus:outline-none">
+            <svg class="w-6 h-6 fill-current text-gray-600 hover:text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path id="menuIcon" d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
+              <path id="closeIcon" d="M18 6L6 18m12 0L6 6" class="hidden"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="menuItems" class="mt-4 space-y-4 hidden md:hidden">
+        <a href="{% url 'home' %}" class="block hover:text-blue-500">Home</a>
+        <a href="{% url 'featured_recipes' %}" class="block hover:text-blue-500">Recipes</a>
+        <a href="{% url 'submit_recipe' %}" class="block hover:text-blue-500">Submit Recipe</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" class="block hover:text-blue-500">Profile</a>
+        <a href="{% url 'account_logout' %}" class="block hover:text-blue-500">Logout</a>
+        {% else %}
+        <a href="{% url 'account_login' %}" class="block hover:text-blue-500">Login</a>
+        <a href="{% url 'account_signup' %}" class="block hover:text-blue-500">Register</a>
+        {% endif %}
+      </div>
+    </div>
+</div>
+
+<body>
+    {%  block hero%} {%endblock%}
+    
+    {% block content %}{% endblock %}
+    <script src="{% static 'js/nav.js' %}"></script>
+
+</body>
+</html>
